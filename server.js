@@ -1,24 +1,29 @@
-var express =require('express'),
+const express =require('express'),
 http=require('http'),
 bodyParser=require('body-parser');
 items=require('./data/menu-item.json');
 
-var app =express()
+const app =express();
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
  
 // parse application/json
 app.use(bodyParser.json())
 
-.use(express.static('public'));
+//.use(express.static('public'));
 
 const port = 3000
+
+app.get('/',(req,res)=>{
+    res.sendFile(__dirname +'/public/index.html');
+})
 
 app.get('/items',  (req,res)=>{
     res.json(items);
 })
 
 app.post('/items',(req,res)=>{
+   
     var matches=items.filter((item)=>{
         return item.url===req.body.url;
     });

@@ -1,8 +1,8 @@
 var AppRouter = Backbone.Router.extend({
     routes:{
-        // "":"list",
-        // "menu-items/new":"itemForm",
-        // "menu-items/:item":"itemDetails"
+        "":"list",
+        "menu-items/new":"itemForm",
+        "menu-items/:item":"itemDetails"
     },
     
     initialize: ()=>{
