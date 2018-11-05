@@ -1,7 +1,6 @@
 {
   "name": "backbonejs",
   "version": "1.0.0",
-  "description": "",
   "main": "backbone-min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,5 +12,17 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "handlebars": "^4.0.12"
-  }
+  },
+  "devDependencies": {
+    "eslint": "^5.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amirtvkli/backbonejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/amirtvkli/backbonejs/issues"
+  },
+  "homepage": "https://github.com/amirtvkli/backbonejs#readme",
+  "description": ""
 }

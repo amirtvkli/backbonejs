@@ -1,8 +1,9 @@
+
 var AppRouter = Backbone.Router.extend({
     routes:{
-        "":"list",
-        "menu-items/new":"itemForm",
-        "menu-items/:item":"itemDetails"
+        '':'list',
+        'menu-items/new':'itemForm',
+        'menu-items/:item':'itemDetails'
     },
     
     initialize: ()=>{
@@ -12,29 +13,33 @@ var AppRouter = Backbone.Router.extend({
         });
         this.menuView = new MenuView({
             items: [
-                "Garden Salad",
-                "Pizza",
-                "Cheesecake"
+                'Garden Salad',
+                'Pizza',
+                'Cheesecak'
             ]
         });
     },
-
+    
     list: ()=>{
-        $('#app').html('List Screen');
+        $('#app').html('List Screen'); 
     },
     
     itemDetails:(item)=>{
-        this.MenuItemView.options.name = item;
-        $('#app').html(view.menuItemView.render().el);
+        //this.menuItemView.set('id',item);
+        //this.menuItemView.fetch();
+        //this.MenuItemView.options.name = item;
+        this.menuItemView.model = this.menuItem.get(item);
+        $('#app').html(this.menuItemView.render().el);
     },
     
     itemForm: ()=>{
+       console.log('here');
         $('#app').html('New item form');
     }
     
 });
 
-var app = new AppRouter();
+let app = new AppRouter();
 
 $(()=>{
     Backbone.history.start();
