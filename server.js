@@ -1,32 +1,31 @@
 const express =require('express'),
 http=require('http'),
-bodyParser=require('body-parser');
+bodyParser=require('body-parser'),
+favicon = require('serve-favicon'),
+logger = require('morgan'),
+methodOverride = require('method-override'),
+//session = require('express-session'),
+multer = require('multer'),
+errorHandler = require('errorhandler');
+
 items=require('./data/menu-item.json');
+const port = 3000
 
 
-let winston = require('winston');
+/** procedure one **/
+var app = express()
+    .set('view enging', 'jade')
+    .use(favicon(__dirname + '/public/favicon.ico'))
+    .use(logger('dev'))
+    .use(methodOverride())
+    .use(bodyParser.json())
+    .use(express.static('public'))
+    .use(bodyParser.json())
+    .use(bodyParser.urlencoded({ extended: true }))
+    .use(multer),
+    .use(express.static(path.join(__dirname +'/public')));
 
-let logger 
-// const app =express();
-// parse application/x-www-form-urlencoded
-// app.use(bodyParser.urlencoded({ extended: false }))
- 
-http.createServer(onRequest).listen(3000);
-
-function onRequest(request,response){
-    console.log('A request was received');
-    response.writeHead(200);
-    response.end();
-}
-// parse application/json
-//  app.use(bodyParser.json())
-
-//  app.use(express.static('public'));
-
-// const port = 3000
-
-//  app.get('/',(req,res)=>{
-//     res.sendFile(__dirname +'/public/index.html');
+// app.get('/',(req,res)=>{
 // })
 
 // app.get('/items',  (req,res)=>{
@@ -48,4 +47,22 @@ function onRequest(request,response){
 //     }
 // })
 
-//app.listen(port, () => console.log(`App is listening on port ${port}!`));
+app.listen(port, '127.0.0.1');
+console.log('Server ready at http://localhost:3000');
+
+/*** procedure two *************************************
+// Create an instance of the http server to handle HTTP requests
+let app = http.createServer((req, res) => {
+    // Set a response type of plain text for the response
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+
+    // Send back a response and end the connection
+    //res.end('Hell Backbone!\n');
+});
+
+// Start the server on port 3000
+*******************************************************/
+
+
+
+
